@@ -214,12 +214,18 @@ a {
 }
 
 .research-entry,
-.cv-panel {
+.cv-panel,
+.cv-section {
   padding: 34px 38px;
   border: 1px solid var(--soft);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.76);
   box-shadow: 0 18px 52px rgba(27, 51, 76, 0.08);
+}
+
+.cv-panel + .cv-section,
+.cv-section + .cv-section {
+  margin-top: 28px;
 }
 
 .entry-label {
@@ -232,7 +238,8 @@ a {
 }
 
 .research-entry h2,
-.cv-panel h2 {
+.cv-panel h2,
+.cv-section h2 {
   margin: 0;
   color: var(--text);
   font-size: 28px;
@@ -248,13 +255,61 @@ a {
 }
 
 .research-entry p,
-.cv-panel p {
+.cv-panel p,
+.cv-section p {
   margin: 20px 0 0;
   color: #2f3b48;
 }
 
 .cv-panel .button-link {
   margin-top: 28px;
+}
+
+.cv-download p {
+  margin-top: 0;
+}
+
+.cv-list {
+  display: grid;
+  gap: 28px;
+  margin-top: 24px;
+}
+
+.cv-item {
+  display: grid;
+  grid-template-columns: 118px minmax(0, 1fr);
+  gap: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--soft);
+}
+
+.cv-item:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.cv-date {
+  margin: 3px 0 0;
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 740;
+  line-height: 1.35;
+}
+
+.cv-item h3 {
+  margin: 0;
+  color: var(--text);
+  font-size: 20px;
+  font-weight: 720;
+  line-height: 1.35;
+}
+
+.cv-item p {
+  margin: 6px 0 0;
+}
+
+.cv-note {
+  color: var(--muted);
 }
 
 .site-footer {
@@ -313,7 +368,13 @@ a {
   }
 
   .research-entry,
-  .cv-panel {
+  .cv-panel,
+  .cv-section {
     padding: 28px 24px;
+  }
+
+  .cv-item {
+    grid-template-columns: 1fr;
+    gap: 6px;
   }
 }

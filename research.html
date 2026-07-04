@@ -4,55 +4,59 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Research | Zeqian Yu</title>
-    <meta name="description" content="Research by Zeqian Yu.">
+    <meta name="description" content="Research by Zeqian Yu on empirical macroeconomics and policy evaluation.">
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;750;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <header class="site-header">
-      <a class="site-title" href="index.html">Zeqian Yu</a>
-      <nav class="site-nav" aria-label="Main navigation">
-        <a href="index.html">Home</a>
-        <a class="active" href="research.html">Research</a>
-        <a href="cv.html">CV</a>
-      </nav>
+    <header class="site-header" id="siteHeader">
+      <div class="header-inner">
+        <a class="site-title" href="index.html">
+          <span class="brand-mark">ZY</span>
+          <span class="long">Zeqian Yu</span>
+        </a>
+        <nav class="site-nav" aria-label="Main navigation">
+          <a href="index.html">Home</a>
+          <a class="active" href="research.html">Research</a>
+          <a href="cv.html">CV</a>
+        </nav>
+      </div>
     </header>
 
-    <main class="page-layout">
-      <header class="page-heading">
+    <main class="page">
+      <header class="page-head reveal d1">
         <h1>Research</h1>
       </header>
 
-      <article class="research-entry">
-        <p class="entry-label">Master&apos;s Thesis Proposal</p>
-        <h2>High-Speed Rail Expansion and Electric Vehicle Adoption in Spain</h2>
-        <p class="entry-meta">Supervised by Prof. Javier Gardeazabal.</p>
-        <p>
-          This thesis asks whether access to high-speed rail affects local electric vehicle
-          adoption in Spain. It adapts a recent China-focused research question to the Spanish
-          setting, where high-speed rail geography, rollout timing, and institutions differ.
-        </p>
-        <p>
-          The project constructs a municipality-year panel for 2015-2025, combining DGT vehicle
-          registrations with high-speed rail station and line data, municipal boundaries,
-          socioeconomic controls, and policy and charging-infrastructure data.
-        </p>
-        <p>
-          Methodologically, the thesis is centered on causal inference and policy evaluation.
-          The empirical strategy uses staggered Difference-in-Differences and Callaway-Sant'Anna
-          DID estimators, supported by balance checks, pre-trend/event-study diagnostics,
-          a least-cost instrumental-variable robustness exercise, and mechanism checks related
-          to policy exposure and charging infrastructure.
-        </p>
-        <p>
-          More broadly, the project reflects my interest in credible empirical designs for
-          policy-relevant economic questions.
-        </p>
-      </article>
+      <section class="reveal d2">
+        <h2 class="section-title">Working papers</h2>
+
+        <div class="pub-list">
+          <article class="pub">
+            <h3>High-Speed Rail Expansion and Electric Vehicle Adoption in Spain</h3>
+            <p class="pub-meta">Master&apos;s thesis, University of the Basque Country (UPV/EHU), 2026.</p>
+            <p class="pub-note">Supervised by Prof. Javier Gardeazabal.</p>
+          </article>
+        </div>
+      </section>
     </main>
 
     <footer class="site-footer">
-      <span>Contact: </span><a href="mailto:zeqian.yu@alumnos.uc3m.es">zeqian.yu@alumnos.uc3m.es</a>
+      <span>&copy; 2026 Zeqian Yu</span>
     </footer>
+
+    <script>
+      (function () {
+        var header = document.getElementById('siteHeader');
+        var onScroll = function () {
+          header.classList.toggle('scrolled', window.scrollY > 8);
+        };
+        onScroll();
+        window.addEventListener('scroll', onScroll, { passive: true });
+      })();
+    </script>
   </body>
 </html>

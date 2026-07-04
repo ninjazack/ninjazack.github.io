@@ -4,73 +4,88 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CV | Zeqian Yu</title>
-    <meta name="description" content="CV of Zeqian Yu.">
+    <meta name="description" content="Curriculum vitae of Zeqian Yu.">
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;750;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <header class="site-header">
-      <a class="site-title" href="index.html">Zeqian Yu</a>
-      <nav class="site-nav" aria-label="Main navigation">
-        <a href="index.html">Home</a>
-        <a href="research.html">Research</a>
-        <a class="active" href="cv.html">CV</a>
-      </nav>
+    <header class="site-header" id="siteHeader">
+      <div class="header-inner">
+        <a class="site-title" href="index.html">
+          <span class="brand-mark">ZY</span>
+          <span class="long">Zeqian Yu</span>
+        </a>
+        <nav class="site-nav" aria-label="Main navigation">
+          <a href="index.html">Home</a>
+          <a href="research.html">Research</a>
+          <a class="active" href="cv.html">CV</a>
+        </nav>
+      </div>
     </header>
 
-    <main class="page-layout">
-      <header class="page-heading">
+    <main class="page">
+      <header class="page-head reveal d1">
         <h1>CV</h1>
       </header>
 
-      <section class="cv-panel cv-download" aria-label="CV download">
-        <p>My CV is available as a PDF.</p>
-        <a class="button-link" href="files/CV_Zeqian_Yu.pdf" download>Download Full CV</a>
-      </section>
-
-      <section class="cv-section" aria-labelledby="education-heading">
-        <h2 id="education-heading">Short CV</h2>
-
-        <div class="cv-list">
-          <article class="cv-item">
-            <p class="cv-date">2026-2028</p>
-            <div>
-              <h3>MRes in Economic Analysis</h3>
-              <p>Universidad Carlos III de Madrid</p>
-              <p class="cv-note">Incoming student; path to PhD.</p>
-            </div>
-          </article>
-
-          <article class="cv-item">
-            <p class="cv-date">Current</p>
-            <div>
-              <h3>Master in Economics: Empirical Application and Policies</h3>
-              <p>University of the Basque Country (UPV/EHU)</p>
-            </div>
-          </article>
-
-          <article class="cv-item">
-            <p class="cv-date">Master's</p>
-            <div>
-              <h3>Master in Finance</h3>
-              <p>EADA Business School Barcelona</p>
-            </div>
-          </article>
-
-          <article class="cv-item">
-            <p class="cv-date">Bachelor's</p>
-            <div>
-              <h3>Bachelor of Economics Science in Finance</h3>
-              <p>Xi'an International Studies University</p>
-            </div>
-          </article>
+      <section class="card cv-banner reveal d2" aria-label="CV download">
+        <div class="txt">
+          <strong>Curriculum Vitae (PDF)</strong>
         </div>
+        <a class="btn btn-primary" href="files/Zeqian_Yu_CV.pdf" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+          Download full CV
+        </a>
       </section>
 
+      <div class="reveal d3">
+        <h2 class="section-title">Education</h2>
+
+        <div class="timeline">
+          <div class="tl-item now">
+            <p class="tl-date">2026 &ndash; 2028 · Incoming</p>
+            <h3>MRes in Economic Analysis</h3>
+            <p class="place">Universidad Carlos III de Madrid</p>
+            <p class="note">Path to PhD.</p>
+          </div>
+
+          <div class="tl-item">
+            <p class="tl-date">Current</p>
+            <h3>Master in Economics: Empirical Applications and Policies</h3>
+            <p class="place">University of the Basque Country (UPV/EHU)</p>
+          </div>
+
+          <div class="tl-item">
+            <p class="tl-date">2018</p>
+            <h3>Master in Finance</h3>
+            <p class="place">EADA Business School Barcelona</p>
+          </div>
+
+          <div class="tl-item">
+            <p class="tl-date">2017</p>
+            <h3>Bachelor of Economics in Finance</h3>
+            <p class="place">Xi&apos;an International Studies University</p>
+          </div>
+        </div>
+      </div>
     </main>
 
     <footer class="site-footer">
-      <span>Contact: </span><a href="mailto:zeqian.yu@alumnos.uc3m.es">zeqian.yu@alumnos.uc3m.es</a>
+      <span>&copy; 2026 Zeqian Yu</span>
     </footer>
+
+    <script>
+      (function () {
+        var header = document.getElementById('siteHeader');
+        var onScroll = function () {
+          header.classList.toggle('scrolled', window.scrollY > 8);
+        };
+        onScroll();
+        window.addEventListener('scroll', onScroll, { passive: true });
+      })();
+    </script>
   </body>
 </html>

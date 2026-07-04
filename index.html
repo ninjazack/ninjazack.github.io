@@ -3,50 +3,81 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Zeqian Yu</title>
-    <meta name="description" content="Personal academic website of Zeqian Yu.">
+    <title>Zeqian Yu | Economist</title>
+    <meta name="description" content="Zeqian Yu (余泽谦), economics master's student researching macroeconomics, monetary policy, and international finance.">
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;750;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <header class="site-header">
-      <a class="site-title" href="index.html">Zeqian Yu</a>
-      <nav class="site-nav" aria-label="Main navigation">
-        <a class="active" href="index.html">Home</a>
-        <a href="research.html">Research</a>
-        <a href="cv.html">CV</a>
-      </nav>
+    <header class="site-header" id="siteHeader">
+      <div class="header-inner">
+        <a class="site-title" href="index.html">
+          <span class="brand-mark">ZY</span>
+          <span class="long">Zeqian Yu</span>
+        </a>
+        <nav class="site-nav" aria-label="Main navigation">
+          <a class="active" href="index.html">Home</a>
+          <a href="research.html">Research</a>
+          <a href="cv.html">CV</a>
+        </nav>
+      </div>
     </header>
 
-    <main class="home-layout">
-      <section class="identity-block" aria-labelledby="identity-heading">
+    <main class="home">
+      <section class="identity reveal d1" aria-labelledby="identity-heading">
         <div class="portrait">
           <img src="assets/profile_picture.jpg" alt="Portrait of Zeqian Yu">
         </div>
         <h1 id="identity-heading">Zeqian Yu</h1>
         <p class="chinese-name">余泽谦</p>
+
+        <div class="socials">
+          <a class="contact-link" href="mailto:zeqian.yu@alumnos.uc3m.es">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="m3 6 9 6 9-6"/></svg>
+            Contact
+          </a>
+        </div>
       </section>
 
-      <section class="intro-block" aria-labelledby="welcome-heading">
-        <h2 id="welcome-heading">Welcome</h2>
-        <p>
+      <section class="intro reveal d2" aria-labelledby="welcome-heading">
+        <h2 id="welcome-heading" class="eyebrow">Welcome</h2>
+        <p class="lead">
           I am Zeqian Yu, also known as Zeq, a master&apos;s student in the Master in Economics:
-          Empirical Application and Policies at the University of the Basque Country (UPV/EHU).
-          From the 2026-2027 academic year, I will join the MRes in Economic Analysis (path to PhD) at
-          Universidad Carlos III de Madrid.
+          Empirical Applications and Policies at the University of the Basque Country (UPV/EHU).
+          From the 2026&ndash;2027 academic year, I will join the MRes in Economic Analysis
+          (path to PhD) at Universidad Carlos III de Madrid.
         </p>
         <p>
-          My research interests are in macroeconomics and international finance, especially
-          policy-relevant questions related to monetary policy, financial markets, and
-          international economic linkages. I am also interested in empirical research designs
-          and modern quantitative tools, including causal inference, artificial intelligence,
-          and machine learning, for studying economic and financial questions.
+          My research interests are in macroeconomics and international finance. I study
+          policy-relevant questions using causal inference and modern quantitative tools,
+          including machine learning.
         </p>
+
+        <div class="chips" aria-label="Research interests">
+          <span class="chip">Causal inference</span>
+          <span class="chip">Macroeconomics</span>
+          <span class="chip">International finance</span>
+          <span class="chip">Machine learning</span>
+        </div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <span>Contact: </span><a href="mailto:zeqian.yu@alumnos.uc3m.es">zeqian.yu@alumnos.uc3m.es</a>
+      <span>&copy; 2026 Zeqian Yu</span>
     </footer>
+
+    <script>
+      (function () {
+        var header = document.getElementById('siteHeader');
+        var onScroll = function () {
+          header.classList.toggle('scrolled', window.scrollY > 8);
+        };
+        onScroll();
+        window.addEventListener('scroll', onScroll, { passive: true });
+      })();
+    </script>
   </body>
 </html>

@@ -3,6 +3,8 @@
 Context and decisions log so any future session can continue without re-deriving everything.
 Last updated: 2026-07-04.
 
+**Status: LIVE.** The site is deployed and reachable at https://zeqianyu.com (secure, padlock). Hosting on GitHub Pages, fronted by the Cloudflare proxy, with Cloudflare Web Analytics running.
+
 ## Owner & goal
 
 - Zeqian Yu (余泽谦), master's student in economics.
@@ -19,7 +21,7 @@ Last updated: 2026-07-04.
 
 ## Site structure
 
-- `index.html` — Home. Hero: circular portrait (`assets/profile_picture.jpg`), name "Zeqian Yu", Chinese name 余泽谦, a small "Welcome" heading, a two-sentence intro, interest chips, and a single "Contact" button (mailto).
+- `index.html` — Home. Hero: circular portrait (`assets/profile_picture.jpg`), name "Zeqian Yu", Chinese name 余泽谦, a small "Welcome" heading, a two-sentence intro, interest chips, and a single "Contact" button (mailto). Browser tab `<title>` is just "Zeqian Yu" (user removed the earlier "| Economist"). Research/CV pages use "Research | Zeqian Yu" / "CV | Zeqian Yu".
 - `research.html` — Research. Plain academic listing: "Research" heading → "Working papers" section → one entry (the HSR/EV thesis). Built to grow as publications arrive (copy the `<article class="pub">` block).
 - `cv.html` — CV. "CV" heading + a download banner linking `files/Zeqian_Yu_CV.pdf` + an education timeline.
 - `styles.css` — the whole design system (see below).
@@ -48,15 +50,19 @@ Last updated: 2026-07-04.
 - **GitHub repo:** `github.com/ninjazack/ninjazack.github.io` (public user site).
 - **GitHub Pages:** Source = Deploy from a branch, branch `main`, folder `/ (root)`.
 - **Custom domain:** `zeqianyu.com` (matches CNAME file).
-- **DNS on Cloudflare** (domain registered/managed there). Records, all **DNS only / grey cloud**:
+- **DNS on Cloudflare** (domain registered/managed there — account `Zeqianyu@gmail.com`). Records:
   - `A  @  185.199.108.153`
   - `A  @  185.199.109.153`
   - `A  @  185.199.110.153`
   - `A  @  185.199.111.153`
   - `CNAME  www  ninjazack.github.io`
-- **HTTPS:** GitHub issues the cert (Let's Encrypt). Cloudflare proxy is intentionally OFF (grey cloud) so GitHub can provision HTTPS. If proxy is ever turned ON (orange cloud), set Cloudflare SSL/TLS mode to **Full** (never "Flexible" → redirect loop).
-- After cert issues, tick **Enforce HTTPS** in GitHub Pages settings.
-- Gotcha seen during setup: first `pages build and deployment` had `build` succeed but `deploy` fail with "Deployment failed, try again later" (transient). Fix = Actions → the run → **Re-run jobs → Re-run failed jobs**.
+- **Proxy is now ON (orange cloud) for all five records.** It was grey-cloud (DNS only) during initial setup so GitHub could issue its HTTPS cert; once that was active we switched to proxied to enable Cloudflare Web Analytics + CDN/DDoS protection.
+- **SSL/TLS mode = Full** (SSL/TLS → Overview). This is REQUIRED with the proxy on — never "Flexible" (causes redirect loops). To revert to the pre-proxy state, flip the five records back to grey cloud.
+- **Always Use HTTPS = On** (SSL/TLS → Edge Certificates) so `http://` auto-redirects to `https://`.
+- **HTTPS cert:** with the proxy on, Cloudflare presents its edge cert to visitors and connects to GitHub (origin) over HTTPS. GitHub's own "Enforce HTTPS" is not needed and was left as-is.
+- **Analytics:** Cloudflare Web Analytics, "Automatic setup" (works because traffic is proxied). View at Cloudflare → Analytics → Web analytics → zeqianyu.com. No script in the site code.
+- **Caching caveat:** because traffic is proxied, edits can take a few extra minutes to show for visitors; there's a "Purge Cache" button in Cloudflare (Caching) if needed.
+- **KNOWN GITHUB FLAKINESS:** the `pages build and deployment` action intermittently has `build` succeed but `deploy` fail ("Deployment failed, try again later") or get stuck on "Queued" forever. This is a GitHub-side issue, unrelated to the site/Cloudflare. **Reliable fix:** push a fresh commit — an empty one works: `git commit --allow-empty -m "redeploy" && git push`. (Re-running the failed job tends to get stuck; a fresh push supersedes stuck runs and deploys cleanly.)
 
 ## Maintenance workflow
 
@@ -67,7 +73,7 @@ git add -A
 git commit -m "describe change"
 git push
 ```
-Remote and `main` are already set, so plain `git push` works. GitHub auto-rebuilds; live in ~1 min. Hard-refresh (Cmd+Shift+R) to bypass cache. Auth: HTTPS with a **Personal Access Token** (classic, `repo` scope), username `ninjazack` (not the account password).
+Remote and `main` are already set, so plain `git push` works. GitHub auto-rebuilds; live in ~1 min. Hard-refresh (Cmd+Shift+R) to bypass cache (Cloudflare cache may add a short delay). Auth: HTTPS with a **Personal Access Token** (classic, `repo` scope), username `ninjazack` — the token is now saved in macOS Keychain, so pushes no longer prompt. If a deploy fails or sticks on "Queued," push an empty commit to redeploy (see the GitHub flakiness note under Hosting).
 
 ### Updating the CV
 
@@ -95,7 +101,14 @@ Section order: **Education → Research Experience & Course Projects → Worksho
 
 ## Open / possible future work
 
-- Enable "Enforce HTTPS" once the certificate finishes issuing.
 - CV upgrades discussed but NOT yet added: website URL (zeqianyu.com) + optional ORCID/Google Scholar in the CV header; a one-line "Research Interests"; a References/referees section (supervisor Prof. Javier Gardeazabal); add Python to skills if true; a Teaching section if any TA experience.
 - Research page is intentionally minimal now; user will add publications over time.
 - Research entries are currently coursework projects (plus the thesis); section is titled "Research Experience & Course Projects" for honesty.
+
+## Done (go-live milestones)
+
+- Site pushed to GitHub, Pages enabled, custom domain `zeqianyu.com` verified.
+- Cloudflare DNS configured; HTTPS cert issued; site went live and secure.
+- Switched Cloudflare to proxied (orange cloud) + SSL Full + Always Use HTTPS.
+- Cloudflare Web Analytics enabled.
+- Site copy fixes applied live: homepage `<title>` → "Zeqian Yu"; cv.html education entry → "Bachelor of Economics Sciences in Finance".

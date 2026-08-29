@@ -89,6 +89,7 @@ Latest file: `CV_Zeqian_Yu_edu_20260829.tex`. **Always create a NEW dated file; 
 Section order: **Education → Working Papers → Selected Course Projects → Workshops, Seminars & Conferences → Relevant Professional Experience → Honors & Awards → Other Information.** Two-page target (hard requirement).
 
 - The thesis was split out of the old combined section into its own **Working Papers** entry: title left, "Under review" right, then an italic line "SERIEs: Journal of the Spanish Economic Association. Master's thesis (10/10, with Distinction), UPV/EHU; supervised by Prof. Javier Gardeazabal." Two bullets (method, finding) worded with the paper's OWN abstract terminology (HSR, HSR connectivity/connection/access, EV adoption, staggered DID / Callaway and Sant'Anna DID (CSDID), Mahalanobis-matched sample, battery electric vehicle (BEV) share of new registrations, range anxiety). **Do not paraphrase or invent wording here** — the user is strict about this.
+- Header line: `Getafe, Madrid, Spain | Email: zeqian.yu@alumnos.uc3m.es | Website: zeqianyu.com`. The phone number was deliberately dropped to make room for the site URL (linked via `\href`, `hidelinks` so it renders plain).
 - Education: MRes line reads `2026 -- Present` (not "incoming", not an end year). UPV/EHU master shows a single year `2026`, written "University of the Basque Country (UPV/EHU)" in that order.
 - **Two-page fitting trick:** do NOT shrink the margin (user rejected that). Instead trim the inter-section `\vspace` values (they are currently 6pt) and avoid `\vfill` before the "Last updated" line — `\vfill` on a full page pushes that line to a third page.
 
@@ -119,7 +120,7 @@ Section order: **Education → Working Papers → Selected Course Projects → W
 - Cloudflare Web Analytics enabled.
 - Site copy fixes applied live: homepage `<title>` → "Zeqian Yu"; cv.html education entry → "Bachelor of Economics Sciences in Finance".
 - **2026-08-07:** UPV/EHU master completed; thesis moved to a Working Papers section marked "Under review"; CV `20260807` published to the site.
-- **2026-08-29 (UC3M starts):** switched from "incoming" to current everywhere. Homepage intro now names ONLY the current UC3M programme (the user wants prior degrees read from the CV, not repeated on the homepage). cv.html timeline entry `2026 – Present`. Meta description refreshed (the old one still said "monetary policy", which had been dropped from the interest chips). CV `20260829` published to `files/Zeqian_Yu_CV.pdf`.
+- **2026-08-29 (UC3M starts):** switched from "incoming" to current everywhere. Homepage intro now names ONLY the current UC3M programme (the user wants prior degrees read from the CV, not repeated on the homepage). cv.html timeline entry `2026 – Present`. Meta description refreshed (the old one still said "monetary policy", which had been dropped from the interest chips). CV header switched from phone number to `Website: zeqianyu.com`. CV `20260829` published to `files/Zeqian_Yu_CV.pdf`. **Pushed and live.**
 
 ## Paper status history (thesis → journal)
 

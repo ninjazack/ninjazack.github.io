@@ -1,15 +1,15 @@
 # Project: Zeqian Yu — Personal Academic Website
 
 Context and decisions log so any future session can continue without re-deriving everything.
-Last updated: 2026-07-04.
+Last updated: 2026-08-29.
 
 **Status: LIVE.** The site is deployed and reachable at https://zeqianyu.com (secure, padlock). Hosting on GitHub Pages, fronted by the Cloudflare proxy, with Cloudflare Web Analytics running.
 
 ## Owner & goal
 
-- Zeqian Yu (余泽谦), master's student in economics.
-- Currently: Master in Economics (Empirical Applications and Policies), UPV/EHU (Bilbao).
-- Incoming 2026–2028: MRes in Economic Analysis, Universidad Carlos III de Madrid (UC3M) — path to PhD.
+- Zeqian Yu (余泽谦), economics researcher in training.
+- **Current (from Sep 2026): MRes in Economic Analysis, Universidad Carlos III de Madrid (UC3M), path to PhD.** Lives in Getafe, Madrid.
+- Completed 2026: Master in Economics (Empirical Applications and Policies), University of the Basque Country (UPV/EHU). Degree average 8.35/10; thesis 10/10 with Distinction. (GPA is deliberately NOT shown on the CV, since no other degree lists one.)
 - Career target: PhD → professor or central-bank researcher. The site is aimed at an **academic** audience.
 - Contact email on site: zeqian.yu@alumnos.uc3m.es. Personal email: ninjazack@duck.com. Cloudflare/GitHub email: Zeqianyu@gmail.com.
 
@@ -84,7 +84,13 @@ Remote and `main` are already set, so plain `git push` works. GitHub auto-rebuil
 
 ## CV content conventions (in the Desktop/CV .tex)
 
-Section order: **Education → Research Experience & Course Projects → Workshops, Seminars & Conferences → Relevant Professional Experience → Honors & Awards → Other Information.** Two-page target.
+Latest file: `CV_Zeqian_Yu_edu_20260829.tex`. **Always create a NEW dated file; never overwrite an older one.**
+
+Section order: **Education → Working Papers → Selected Course Projects → Workshops, Seminars & Conferences → Relevant Professional Experience → Honors & Awards → Other Information.** Two-page target (hard requirement).
+
+- The thesis was split out of the old combined section into its own **Working Papers** entry: title left, "Under review" right, then an italic line "SERIEs: Journal of the Spanish Economic Association. Master's thesis (10/10, with Distinction), UPV/EHU; supervised by Prof. Javier Gardeazabal." Two bullets (method, finding) worded with the paper's OWN abstract terminology (HSR, HSR connectivity/connection/access, EV adoption, staggered DID / Callaway and Sant'Anna DID (CSDID), Mahalanobis-matched sample, battery electric vehicle (BEV) share of new registrations, range anxiety). **Do not paraphrase or invent wording here** — the user is strict about this.
+- Education: MRes line reads `2026 -- Present` (not "incoming", not an end year). UPV/EHU master shows a single year `2026`, written "University of the Basque Country (UPV/EHU)" in that order.
+- **Two-page fitting trick:** do NOT shrink the margin (user rejected that). Instead trim the inter-section `\vspace` values (they are currently 6pt) and avoid `\vfill` before the "Last updated" line — `\vfill` on a full page pushes that line to a third page.
 
 - Education bachelor line reads "Bachelor of Economics Sciences in Finance." MRes line does **not** say "(Path to PhD)."
 - No em-dashes; no "out-of-sample"; no code/variable names (e.g. not `Math_Score`, not `R(1-3)`).
@@ -112,3 +118,9 @@ Section order: **Education → Research Experience & Course Projects → Worksho
 - Switched Cloudflare to proxied (orange cloud) + SSL Full + Always Use HTTPS.
 - Cloudflare Web Analytics enabled.
 - Site copy fixes applied live: homepage `<title>` → "Zeqian Yu"; cv.html education entry → "Bachelor of Economics Sciences in Finance".
+- **2026-08-07:** UPV/EHU master completed; thesis moved to a Working Papers section marked "Under review"; CV `20260807` published to the site.
+- **2026-08-29 (UC3M starts):** switched from "incoming" to current everywhere. Homepage intro now names ONLY the current UC3M programme (the user wants prior degrees read from the CV, not repeated on the homepage). cv.html timeline entry `2026 – Present`. Meta description refreshed (the old one still said "monetary policy", which had been dropped from the interest chips). CV `20260829` published to `files/Zeqian_Yu_CV.pdf`.
+
+## Paper status history (thesis → journal)
+
+Submitted to *SERIEs*; "with editor" 5 Aug 2026 → **"under review" 11 Aug 2026** (cleared desk screening). Label it "Under review" — it is a working paper, NOT a publication. Only move it to a "Publications" section once accepted. Convention to follow: submitted/under review → R&R → accepted/published.

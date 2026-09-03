@@ -23,6 +23,10 @@ Last updated: 2026-08-29.
 
 - `index.html` — Home. Hero: circular portrait (`assets/profile_picture.jpg`), name "Zeqian Yu", Chinese name 余泽谦, a small "Welcome" heading, a two-sentence intro, interest chips, and a single "Contact" button (mailto). Browser tab `<title>` is just "Zeqian Yu" (user removed the earlier "| Economist"). Research/CV pages use "Research | Zeqian Yu" / "CV | Zeqian Yu".
 - `research.html` — Research. Plain academic listing: "Research" heading → "Working papers" section → one entry (the HSR/EV thesis). Built to grow as publications arrive (copy the `<article class="pub">` block).
+  - **Expandable abstract component (keep this style for every future paper).** Each paper entry ends with a pill-shaped `<button class="abstract-toggle">` labelled "Abstract" with a chevron that rotates 180° when open, followed by `<div class="abstract-panel" id="…">` wrapping `<div class="abstract-inner"><p>…</p></div>`. The panel animates open with the `grid-template-rows: 0fr → 1fr` technique and the abstract sits in a bordered white card, justified text.
+  - **To add another paper:** copy the whole button + panel block, give the panel a NEW unique `id`, and point the button's `aria-controls` at that same id. **No JavaScript changes needed** — the script at the bottom of `research.html` loops over every `.abstract-toggle` and opens whichever panel its `aria-controls` names.
+  - Accessibility is deliberate: a real `<button>` with `aria-expanded` / `aria-controls`, a `:focus-visible` ring, and the animation disabled under `prefers-reduced-motion`. Keep those if you edit it.
+  - When pasting an abstract copied out of a PDF, fix the line-break hyphenation artifacts (e.g. `difference-\nin-differences` → `difference-in-differences`, `least-\ncost` → `least-cost`).
 - `cv.html` — CV. "CV" heading + a download banner linking `files/Zeqian_Yu_CV.pdf` + an education timeline.
 - `styles.css` — the whole design system (see below).
 - `assets/` — `favicon.svg`, `profile_picture.jpg` (and a large original PNG, gitignored).
@@ -124,6 +128,8 @@ Section order: **Education → Working Papers → Selected Course Projects → W
 - Site copy fixes applied live: homepage `<title>` → "Zeqian Yu"; cv.html education entry → "Bachelor of Economics Sciences in Finance".
 - **2026-08-07:** UPV/EHU master completed; thesis moved to a Working Papers section marked "Under review"; CV `20260807` published to the site.
 - **2026-08-29 (UC3M starts):** switched from "incoming" to current everywhere. Homepage intro now names ONLY the current UC3M programme (the user wants prior degrees read from the CV, not repeated on the homepage). cv.html timeline entry `2026 – Present`. Meta description refreshed (the old one still said "monetary policy", which had been dropped from the interest chips). CV header switched from phone number to `Website: zeqianyu.com`. CV `20260829` published to `files/Zeqian_Yu_CV.pdf`. **Pushed and live.**
+
+- **2026-08-29 (later same day):** added the expandable **Abstract** toggle to the research page (full abstract, including the result figures, hidden behind the button). Hit the stale-CSS caching problem described above; solved by version-tagging the stylesheet (`styles.css?v=2`). Confirmed working. This toggle is now the house style for every paper entry.
 
 ## Paper status history (thesis → journal)
 

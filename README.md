@@ -61,7 +61,10 @@ Last updated: 2026-08-29.
 - **Always Use HTTPS = On** (SSL/TLS → Edge Certificates) so `http://` auto-redirects to `https://`.
 - **HTTPS cert:** with the proxy on, Cloudflare presents its edge cert to visitors and connects to GitHub (origin) over HTTPS. GitHub's own "Enforce HTTPS" is not needed and was left as-is.
 - **Analytics:** Cloudflare Web Analytics, "Automatic setup" (works because traffic is proxied). View at Cloudflare → Analytics → Web analytics → zeqianyu.com. No script in the site code.
-- **Caching caveat:** because traffic is proxied, edits can take a few extra minutes to show for visitors; there's a "Purge Cache" button in Cloudflare (Caching) if needed.
+- **Caching caveat (IMPORTANT):** because traffic is proxied, Cloudflare caches static assets at its edge. Symptom seen in practice: after a push, the new HTML loads but `styles.css` is still the OLD file, so new CSS rules silently do nothing (a new component renders as an unstyled default browser element). It affected multiple devices and even private windows, because the stale copy lived at the Cloudflare edge, not in the browser.
+  - **Fix used:** the stylesheet is linked with a version query string, currently `<link rel="stylesheet" href="styles.css?v=2">` in all three HTML pages. **Whenever you change `styles.css`, bump the number** (`?v=3`, `?v=4`, ...) in index.html, research.html and cv.html. A new URL has never been cached, so every visitor gets the new file instantly.
+  - Manual alternative: Cloudflare dashboard → zeqianyu.com → Caching → Configuration → **Purge Everything**.
+  - Debugging tip: fetch `https://zeqianyu.com/styles.css` and search it for the rule you just added. If the rule is missing there, it is a cache problem, not a code problem.
 - **KNOWN GITHUB FLAKINESS:** the `pages build and deployment` action intermittently has `build` succeed but `deploy` fail ("Deployment failed, try again later") or get stuck on "Queued" forever. This is a GitHub-side issue, unrelated to the site/Cloudflare. **Reliable fix:** push a fresh commit — an empty one works: `git commit --allow-empty -m "redeploy" && git push`. (Re-running the failed job tends to get stuck; a fresh push supersedes stuck runs and deploys cleanly.)
 
 ## Maintenance workflow

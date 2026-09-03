@@ -582,6 +582,79 @@ img {
   font-size: 14.5px;
 }
 
+/* Expandable abstract */
+.abstract-toggle {
+  margin: 14px 0 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 15px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--accent-strong);
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 160ms var(--ease), background 160ms var(--ease),
+    box-shadow 160ms var(--ease);
+}
+
+.abstract-toggle:hover {
+  border-color: var(--accent-ring);
+  background: var(--accent-soft);
+}
+
+.abstract-toggle:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-ring);
+}
+
+.abstract-toggle svg {
+  width: 14px;
+  height: 14px;
+  transition: transform 240ms var(--ease);
+}
+
+.abstract-toggle[aria-expanded="true"] svg {
+  transform: rotate(180deg);
+}
+
+.abstract-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 280ms var(--ease);
+}
+
+.abstract-panel.open {
+  grid-template-rows: 1fr;
+}
+
+.abstract-inner {
+  overflow: hidden;
+}
+
+.abstract-panel p {
+  margin: 14px 0 0;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--body);
+  font-size: 15.5px;
+  line-height: 1.75;
+  text-align: justify;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .abstract-panel,
+  .abstract-toggle svg {
+    transition: none;
+  }
+}
+
 .tag-row {
   margin: 22px 0 0;
   display: flex;

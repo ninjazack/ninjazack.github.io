@@ -1,7 +1,7 @@
 # Project: Zeqian Yu — Personal Academic Website
 
 Context and decisions log so any future session can continue without re-deriving everything.
-Last updated: 2026-08-29.
+Last updated: 2026-09-20.
 
 **Status: LIVE.** The site is deployed and reachable at https://zeqianyu.com (secure, padlock). Hosting on GitHub Pages, fronted by the Cloudflare proxy, with Cloudflare Web Analytics running.
 
@@ -67,6 +67,7 @@ Last updated: 2026-08-29.
 - **Analytics:** Cloudflare Web Analytics, "Automatic setup" (works because traffic is proxied). View at Cloudflare → Analytics → Web analytics → zeqianyu.com. No script in the site code.
 - **Caching caveat (IMPORTANT):** because traffic is proxied, Cloudflare caches static assets at its edge. Symptom seen in practice: after a push, the new HTML loads but `styles.css` is still the OLD file, so new CSS rules silently do nothing (a new component renders as an unstyled default browser element). It affected multiple devices and even private windows, because the stale copy lived at the Cloudflare edge, not in the browser.
   - **Fix used:** the stylesheet is linked with a version query string, currently `<link rel="stylesheet" href="styles.css?v=2">` in all three HTML pages. **Whenever you change `styles.css`, bump the number** (`?v=3`, `?v=4`, ...) in index.html, research.html and cv.html. A new URL has never been cached, so every visitor gets the new file instantly.
+  - The homepage profile photo is also cache-busted in `index.html` as `assets/profile_picture.jpg?v=2`. **Whenever you replace `assets/profile_picture.jpg`, bump that number** (`?v=3`, `?v=4`, ...) so Cloudflare serves the new image immediately.
   - Manual alternative: Cloudflare dashboard → zeqianyu.com → Caching → Configuration → **Purge Everything**.
   - Debugging tip: fetch `https://zeqianyu.com/styles.css` and search it for the rule you just added. If the rule is missing there, it is a cache problem, not a code problem.
 - **KNOWN GITHUB FLAKINESS:** the `pages build and deployment` action intermittently has `build` succeed but `deploy` fail ("Deployment failed, try again later") or get stuck on "Queued" forever. This is a GitHub-side issue, unrelated to the site/Cloudflare. **Reliable fix:** push a fresh commit — an empty one works: `git commit --allow-empty -m "redeploy" && git push`. (Re-running the failed job tends to get stuck; a fresh push supersedes stuck runs and deploys cleanly.)
@@ -130,6 +131,7 @@ Section order: **Education → Working Papers → Selected Course Projects → W
 - **2026-08-29 (UC3M starts):** switched from "incoming" to current everywhere. Homepage intro now names ONLY the current UC3M programme (the user wants prior degrees read from the CV, not repeated on the homepage). cv.html timeline entry `2026 – Present`. Meta description refreshed (the old one still said "monetary policy", which had been dropped from the interest chips). CV header switched from phone number to `Website: zeqianyu.com`. CV `20260829` published to `files/Zeqian_Yu_CV.pdf`. **Pushed and live.**
 
 - **2026-08-29 (later same day):** added the expandable **Abstract** toggle to the research page (full abstract, including the result figures, hidden behind the button). Hit the stale-CSS caching problem described above; solved by version-tagging the stylesheet (`styles.css?v=2`). Confirmed working. This toggle is now the house style for every paper entry.
+- **2026-09-20:** updated the homepage profile photo in `assets/profile_picture.jpg` and added image cache-busting in `index.html` (`?v=2`). No layout or stylesheet changes were needed.
 
 ## Paper status history (thesis → journal)
 

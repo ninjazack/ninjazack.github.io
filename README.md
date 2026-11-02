@@ -1,7 +1,7 @@
 # Project: Zeqian Yu — Personal Academic Website
 
 Context and decisions log so any future session can continue without re-deriving everything.
-Last updated: 2026-09-20.
+Last updated: 2026-11-03.
 
 **Status: LIVE.** The site is deployed and reachable at https://zeqianyu.com (secure, padlock). Hosting on GitHub Pages, fronted by the Cloudflare proxy, with Cloudflare Web Analytics running.
 
@@ -132,7 +132,8 @@ Section order: **Education → Working Papers → Selected Course Projects → W
 
 - **2026-08-29 (later same day):** added the expandable **Abstract** toggle to the research page (full abstract, including the result figures, hidden behind the button). Hit the stale-CSS caching problem described above; solved by version-tagging the stylesheet (`styles.css?v=2`). Confirmed working. This toggle is now the house style for every paper entry.
 - **2026-09-20:** updated the homepage profile photo in `assets/profile_picture.jpg` and added image cache-busting in `index.html` (`?v=2`). No layout or stylesheet changes were needed.
+- **2026-11-03:** updated the research page status from "Under review" to "Revise and resubmit" after receiving journal feedback.
 
 ## Paper status history (thesis → journal)
 
-Submitted to *SERIEs*; "with editor" 5 Aug 2026 → **"under review" 11 Aug 2026** (cleared desk screening). Label it "Under review" — it is a working paper, NOT a publication. Only move it to a "Publications" section once accepted. Convention to follow: submitted/under review → R&R → accepted/published.
+Submitted to *SERIEs*; "with editor" 5 Aug 2026 → "under review" 11 Aug 2026 (cleared desk screening) → **"revise and resubmit" 3 Nov 2026** (journal feedback received). Label it "Revise and resubmit" — it is a working paper, NOT a publication. Only move it to a "Publications" section once accepted. Convention to follow: submitted/under review → R&R → accepted/published.

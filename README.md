@@ -68,6 +68,7 @@ Last updated: 2026-11-03.
 - **Caching caveat (IMPORTANT):** because traffic is proxied, Cloudflare caches static assets at its edge. Symptom seen in practice: after a push, the new HTML loads but `styles.css` is still the OLD file, so new CSS rules silently do nothing (a new component renders as an unstyled default browser element). It affected multiple devices and even private windows, because the stale copy lived at the Cloudflare edge, not in the browser.
   - **Fix used:** the stylesheet is linked with a version query string, currently `<link rel="stylesheet" href="styles.css?v=2">` in all three HTML pages. **Whenever you change `styles.css`, bump the number** (`?v=3`, `?v=4`, ...) in index.html, research.html and cv.html. A new URL has never been cached, so every visitor gets the new file instantly.
   - The homepage profile photo is also cache-busted in `index.html` as `assets/profile_picture.jpg?v=2`. **Whenever you replace `assets/profile_picture.jpg`, bump that number** (`?v=3`, `?v=4`, ...) so Cloudflare serves the new image immediately.
+  - The CV download is cache-busted in `cv.html` as `files/Zeqian_Yu_CV.pdf?v=20261103`. **Whenever you replace the published CV PDF, bump that version** to the publication date or another new value so Cloudflare serves the new file immediately.
   - Manual alternative: Cloudflare dashboard → zeqianyu.com → Caching → Configuration → **Purge Everything**.
   - Debugging tip: fetch `https://zeqianyu.com/styles.css` and search it for the rule you just added. If the rule is missing there, it is a cache problem, not a code problem.
 - **KNOWN GITHUB FLAKINESS:** the `pages build and deployment` action intermittently has `build` succeed but `deploy` fail ("Deployment failed, try again later") or get stuck on "Queued" forever. This is a GitHub-side issue, unrelated to the site/Cloudflare. **Reliable fix:** push a fresh commit — an empty one works: `git commit --allow-empty -m "redeploy" && git push`. (Re-running the failed job tends to get stuck; a fresh push supersedes stuck runs and deploys cleanly.)
@@ -88,15 +89,15 @@ Remote and `main` are already set, so plain `git push` works. GitHub auto-rebuil
 1. Edit the CV in `/Users/zeqianyu/Desktop/CV` (edit `.tex`, re-render with `pdflatex`, delete `.aux/.log/.out` after).
 2. Overwrite the published copy, keeping the exact name:
    `cp "/Users/zeqianyu/Desktop/CV/CV_Zeqian_Yu_edu_<date>.pdf" "/Users/zeqianyu/Documents/Personal Website/files/Zeqian_Yu_CV.pdf"`
-3. Push (three git commands above). No HTML edit needed — the link is fixed.
+3. Update the CV link version in `cv.html`, then push (three git commands above). The PDF filename stays fixed, while the query version prevents stale Cloudflare content.
 
 ## CV content conventions (in the Desktop/CV .tex)
 
-Latest file: `CV_Zeqian_Yu_edu_20260829.tex`. **Always create a NEW dated file; never overwrite an older one.**
+Latest file: `CV_Zeqian_Yu_edu_20261103.tex`. **Always create a NEW dated file; never overwrite an older one.**
 
 Section order: **Education → Working Papers → Selected Course Projects → Workshops, Seminars & Conferences → Relevant Professional Experience → Honors & Awards → Other Information.** Two-page target (hard requirement).
 
-- The thesis was split out of the old combined section into its own **Working Papers** entry: title left, "Under review" right, then an italic line "SERIEs: Journal of the Spanish Economic Association. Master's thesis (10/10, with Distinction), UPV/EHU; supervised by Prof. Javier Gardeazabal." Two bullets (method, finding) worded with the paper's OWN abstract terminology (HSR, HSR connectivity/connection/access, EV adoption, staggered DID / Callaway and Sant'Anna DID (CSDID), Mahalanobis-matched sample, battery electric vehicle (BEV) share of new registrations, range anxiety). **Do not paraphrase or invent wording here** — the user is strict about this.
+- The thesis was split out of the old combined section into its own **Working Papers** entry: title left, "Revise and resubmit" right, then an italic line "SERIEs: Journal of the Spanish Economic Association. Master's thesis (10/10, with Distinction), UPV/EHU; supervised by Prof. Javier Gardeazabal." Two bullets (method, finding) worded with the paper's OWN abstract terminology (HSR, HSR connectivity/connection/access, EV adoption, staggered DID / Callaway and Sant'Anna DID (CSDID), Mahalanobis-matched sample, battery electric vehicle (BEV) share of new registrations, range anxiety). **Do not paraphrase or invent wording here** — the user is strict about this.
 - Header line: `Getafe, Madrid, Spain | Email: zeqian.yu@alumnos.uc3m.es | Website: zeqianyu.com`. The phone number was deliberately dropped to make room for the site URL (linked via `\href`, `hidelinks` so it renders plain).
 - Education: MRes line reads `2026 -- Present` (not "incoming", not an end year). UPV/EHU master shows a single year `2026`, written "University of the Basque Country (UPV/EHU)" in that order.
 - **Two-page fitting trick:** do NOT shrink the margin (user rejected that). Instead trim the inter-section `\vspace` values (they are currently 6pt) and avoid `\vfill` before the "Last updated" line — `\vfill` on a full page pushes that line to a third page.
@@ -132,7 +133,7 @@ Section order: **Education → Working Papers → Selected Course Projects → W
 
 - **2026-08-29 (later same day):** added the expandable **Abstract** toggle to the research page (full abstract, including the result figures, hidden behind the button). Hit the stale-CSS caching problem described above; solved by version-tagging the stylesheet (`styles.css?v=2`). Confirmed working. This toggle is now the house style for every paper entry.
 - **2026-09-20:** updated the homepage profile photo in `assets/profile_picture.jpg` and added image cache-busting in `index.html` (`?v=2`). No layout or stylesheet changes were needed.
-- **2026-11-03:** updated the research page status from "Under review" to "Revise and resubmit" after receiving journal feedback.
+- **2026-11-03:** updated the research page status from "Under review" to "Revise and resubmit" after receiving journal feedback, and regenerated the downloadable CV with the same status. New source: `CV_Zeqian_Yu_edu_20261103.tex`; published copy: `files/Zeqian_Yu_CV.pdf`.
 
 ## Paper status history (thesis → journal)
 
